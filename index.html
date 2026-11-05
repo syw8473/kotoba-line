@@ -1,4 +1,6 @@
+<!doctype html>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ことば線 JLPT</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +37,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{height:100%}
+body{min-height:100vh;min-height:100dvh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.6;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .jp{font-family:var(--f-jp)}
@@ -194,7 +197,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--n4);outline-off
 .foot{color:var(--muted);font-size:12px;text-align:center}
 
 /* lesson overlay */
-.lesson{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;z-index:20;
+.lesson{position:fixed;inset:0;height:100vh;height:100dvh;background:var(--bg);display:flex;flex-direction:column;z-index:20;
   padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 .l-head,.l-body,.l-foot-in{width:100%;max-width:600px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .l-head{display:flex;align-items:center;gap:14px;padding-block:16px 8px}
@@ -296,6 +299,28 @@ ruby rt{font-size:.42em;color:var(--muted);font-weight:500}
 .result .bots .bot{width:110px;height:121px}
 .chip.icon-btn{cursor:pointer;padding:4px 10px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* 手機：整頁可捲動，題目下方緊接回饋區；回饋＋按鈕 sticky 貼底，避開 Home 指示條 */
+@media (max-width:600px){
+  body{font-size:16px}
+  .lesson{overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:0}
+  .l-head{position:sticky;top:0;z-index:3;background:var(--bg);padding-block:12px 6px}
+  .x{min-width:44px;min-height:44px}
+  .l-body{flex:0 0 auto;overflow:visible;padding-block:10px 16px;gap:16px}
+  .l-foot{position:sticky;bottom:0;z-index:3;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .l-foot-in{padding-block:12px;gap:10px}
+  .prompt{font-size:21px}
+  .btn{min-height:44px;font-size:16px}
+  .btn.wide{min-height:52px;font-size:18px}
+  .btn.small{min-height:40px;font-size:14px}
+  .opt{min-height:60px;font-size:19px}
+  .opt.jp .t{font-size:24px}
+  .tile{min-height:44px;font-size:21px}
+  .tray{min-height:96px}
+  .fb b{font-size:20px}
+  .fb .ans{font-size:17px}
+  .fb .ans .jp{font-size:19px}
+  .leave{font-size:15px}
+}
 @media (max-width:420px){.show .big{font-size:68px}.opt{font-size:16px}.card{flex-wrap:wrap}.card .meta{flex:1 1 calc(100% - 60px)}.card .btn,.card .lock-tag{width:100%}.lv[aria-disabled="true"] .lbl{display:none}.lv[aria-disabled="true"]{padding-right:6px}}
 </style>
 
